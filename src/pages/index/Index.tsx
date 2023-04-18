@@ -19,7 +19,7 @@ function Index() {
           Learn React
         </a>
         <p>
-          <Link to={'/tutorial'}>Tutorial</Link>
+          <Link to={'/tutorial'}>Tutorial: Tic-Tac-Toe</Link>
         </p>
       </header>
     </div>
