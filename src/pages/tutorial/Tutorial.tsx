@@ -1,11 +1,14 @@
 import React from 'react';
 import './tutorial.css';
 
-class Square extends React.Component {
+type squareProps = {
+  value: number
+}
+class Square extends React.Component<squareProps, {}> {
   render() {
     return (
       <button className="square">
-        {/* TODO */}
+        {this.props.value}
       </button>
     );
   }
@@ -13,7 +16,7 @@ class Square extends React.Component {
 
 class Board extends React.Component {
   renderSquare(i: number) {
-    return <Square />;
+    return <Square value={i} />;
   }
 
   render() {
