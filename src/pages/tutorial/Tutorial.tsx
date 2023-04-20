@@ -5,7 +5,7 @@ interface SquareProps {
   value: string | null;
   onClick: () => void;
 }
-function Square(props: SquareProps) {
+function Square(props: SquareProps): JSX.Element {
   return (
     <button className="square" onClick={props.onClick}>
       {props.value}
@@ -18,7 +18,7 @@ interface BoardProps {
   onClick: (arg0: number) => void;
 }
 class Board extends React.Component<BoardProps, {}> {
-  renderSquare(i: number) {
+  renderSquare(i: number): JSX.Element {
     return (
       <Square
         value={this.props.squares[i]}
@@ -27,7 +27,7 @@ class Board extends React.Component<BoardProps, {}> {
     );
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div>
         <div className="board-row">
@@ -70,7 +70,7 @@ class Tutorial extends React.Component<{}, TutorialState> {
     };
   }
 
-  handleClick(i: number) {
+  handleClick(i: number): void {
     const history: Array<{squares: Squares}> = this.state.history.slice(0, this.state.stepNumber + 1);
     const current: {squares: Squares} = history[history.length -1];
     const squares: Squares = current.squares.slice();
@@ -91,19 +91,19 @@ class Tutorial extends React.Component<{}, TutorialState> {
     });
   }
 
-  jumpTo(step: number) {
+  jumpTo(step: number): void {
     this.setState({
       stepNumber: step,
       xIsNext: (step % 2) === 0
     });
   }
 
-  render() {
+  render(): JSX.Element {
     const history: Array<{squares: Squares}> = this.state.history;
     const current: {squares: Squares} = history[this.state.stepNumber];
     const winner: string | null = calculateWinner(current.squares);
 
-    const moves: Array<JSX.Element> = history.map((step: {squares: Squares}, move: number) => {
+    const moves: Array<JSX.Element> = history.map((step: {squares: Squares}, move: number): JSX.Element => {
       const desc: string = move
         ? 'Go to move #' + move
         : 'Go to game start';
@@ -150,7 +150,7 @@ function calculateWinner(squares: Squares): string | null {
     [2, 4, 6]
   ];
   for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
+    const [a, b, c]: Array<number> = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     }
